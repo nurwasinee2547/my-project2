@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Skin Analyst</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-lg mx-auto m-4">
+        <h1 class="text-3xl font-bold mb-6 text-center text-gray-800">โปรแกรมวิเคราะห์ผิวส่วนตัว</h1>
+        
+        <!-- Welcome Section -->
+        <div id="welcome-section" class="text-center">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-700">ยินดีต้อนรับสู่ Personal Skin Analyst</h2>
+            <p class="text-gray-600 mb-6">สร้างโปรไฟล์และเริ่มวิเคราะห์ผิวของคุณวันนี้</p>
+            <button id="start-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 transform hover:scale-105 shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+                เริ่มต้นใช้งาน
+            </button>
+        </div>
+
+        <!-- Main App Section -->
+        <div id="app-section" class="hidden">
+            <div id="profile-form" class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-700">โปรไฟล์ผิวของคุณ</h2>
+                <label class="block mb-2 text-sm font-medium text-gray-700">ชื่อ</label>
+                <input type="text" id="profile-name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200 mb-4" placeholder="ชื่อของคุณ">
+                
+                <label class="block mb-2 text-sm font-medium text-gray-700">ประเภทผิว</label>
+                <select id="skin-type" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200 mb-4">
+                    <option value="dry">ผิวแห้ง</option>
+                    <option value="oily">ผิวมัน</option>
+                    <option value="combination">ผิวผสม</option>
+                    <option value="sensitive">ผิวแพ้ง่าย</option>
+                </select>
+
+                <label class="block mb-2 text-sm font-medium text-gray-700">ปัญหาผิวที่กังวล</label>
+                <textarea id="skin-concerns" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200" placeholder="เช่น สิวที่หลัง, รอยดำ, ผิวไม่สม่ำเสมอ"></textarea>
+                
+                <button id="save-profile-btn" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg mt-4 transition duration-300">
+                    บันทึกโปรไฟล์
+                </button>
+            </div>
+
+            <!-- Image Analysis Section -->
+            <div id="analysis-section" class="hidden">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-700">วิเคราะห์ผิวด้วยรูปภาพ</h2>
+                <div class="mb-4 text-center p-4 border-2 border-dashed border-gray-300 rounded-lg">
+                    <label for="image-upload" class="cursor-pointer text-indigo-600 font-medium hover:text-indigo-800">
+                        อัปโหลดรูปภาพผิวของคุณ
+                    </label>
+                    <input type="file" id="image-upload" class="hidden" accept="image/*">
+                    <p class="text-gray-500 text-sm mt-2">ไฟล์รูปภาพ (jpg, png) เท่านั้น</p>
+                    <img id="preview-image" src="#" alt="ตัวอย่างรูปภาพ" class="mt-4 hidden w-full h-auto rounded-lg shadow-md">
+                </div>
+                
+                <button id="analyze-btn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                    วิเคราะห์
+                </button>
+
+                <div id="analysis-result" class="mt-6 p-4 bg-gray-50 rounded-lg hidden">
+                    <h3 class="text-xl font-medium text-gray-700 mb-2">ผลการวิเคราะห์</h3>
+                    <p id="result-text" class="text-gray-600"></p>
+                </div>
+            </div>
+
+            <!-- Summary & Suggestions Section -->
+            <div id="summary-section" class="hidden">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-700">สรุปและคำแนะนำ</h2>
+                <div id="summary-content" class="bg-gray-50 p-4 rounded-lg">
+                    <p class="text-gray-600">โปรไฟล์: <span id="summary-name" class="font-bold"></span>, <span id="summary-skin-type" class="font-bold"></span></p>
+                    <p class="text-gray-600">ปัญหาที่กังวล: <span id="summary-concerns" class="font-bold"></span></p>
+                    <div id="suggestions" class="mt-4">
+                        <h4 class="text-lg font-medium text-gray-700">คำแนะนำ:</h4>
+                        <ul id="suggestion-list" class="list-disc list-inside text-gray-600 mt-2"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="flex justify-between mt-6">
+                <button id="back-btn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg transition duration-300 hidden">ย้อนกลับ</button>
+                <button id="next-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 hidden">ถัดไป</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const welcomeSection = document.getElementById('welcome-section');
+        const appSection = document.getElementById('app-section');
+        const startBtn = document.getElementById('start-btn');
+        const saveProfileBtn = document.getElementById('save-profile-btn');
+        const analyzeBtn = document.getElementById('analyze-btn');
+        const backBtn = document.getElementById('back-btn');
+        const nextBtn = document.getElementById('next-btn');
+        
+        const profileForm = document.getElementById('profile-form');
+        const analysisSection = document.getElementById('analysis-section');
+        const summarySection = document.getElementById('summary-section');
+
+        const profileNameInput = document.getElementById('profile-name');
+        const skinTypeSelect = document.getElementById('skin-type');
+        const skinConcernsInput = document.getElementById('skin-concerns');
+        const imageUploadInput = document.getElementById('image-upload');
+        const previewImage = document.getElementById('preview-image');
+        const resultText = document.getElementById('result-text');
+        const analysisResultDiv = document.getElementById('analysis-result');
+        const suggestionList = document.getElementById('suggestion-list');
+
+        let userProfile = {};
+        
+        // Event Listeners
+        startBtn.addEventListener('click', () => {
+            welcomeSection.classList.add('hidden');
+            appSection.classList.remove('hidden');
+            profileForm.classList.remove('hidden');
+            backBtn.classList.add('hidden');
+            nextBtn.classList.remove('hidden');
+            nextBtn.textContent = 'ถัดไป';
+        });
+
+        saveProfileBtn.addEventListener('click', () => {
+            userProfile = {
+                name: profileNameInput.value,
+                skinType: skinTypeSelect.value,
+                concerns: skinConcernsInput.value
+            };
+            profileForm.classList.add('hidden');
+            analysisSection.classList.remove('hidden');
+            backBtn.classList.remove('hidden');
+        });
+
+        imageUploadInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    previewImage.src = e.target.result;
+                    previewImage.classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        analyzeBtn.addEventListener('click', () => {
+            if (!previewImage.src || previewImage.classList.contains('hidden')) {
+                alert('กรุณาอัปโหลดรูปภาพก่อนทำการวิเคราะห์');
+                return;
+            }
+
+            // Simulate image analysis (this is a placeholder for a more complex analysis)
+            const analysisResult = analyzeImage(previewImage);
+            resultText.textContent = analysisResult;
+            analysisResultDiv.classList.remove('hidden');
+            nextBtn.classList.remove('hidden');
+            nextBtn.textContent = 'ดูสรุปและคำแนะนำ';
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (!profileForm.classList.contains('hidden')) {
+                // Should not happen, but as a fallback
+                saveProfileBtn.click();
+            } else if (!analysisSection.classList.contains('hidden')) {
+                analysisSection.classList.add('hidden');
+                summarySection.classList.remove('hidden');
+                nextBtn.classList.add('hidden');
+                backBtn.classList.remove('hidden');
+                showSummaryAndSuggestions();
+            }
+        });
+
+        backBtn.addEventListener('click', () => {
+            if (!analysisSection.classList.contains('hidden')) {
+                analysisSection.classList.add('hidden');
+                profileForm.classList.remove('hidden');
+                backBtn.classList.add('hidden');
+                nextBtn.classList.remove('hidden');
+                nextBtn.textContent = 'ถัดไป';
+            } else if (!summarySection.classList.contains('hidden')) {
+                summarySection.classList.add('hidden');
+                analysisSection.classList.remove('hidden');
+                backBtn.classList.remove('hidden');
+                nextBtn.classList.remove('hidden');
+                nextBtn.textContent = 'ดูสรุปและคำแนะนำ';
+            }
+        });
+        
+        // Core Logic
+        function analyzeImage(image) {
+            // This is a simple simulation. A real app would use a more advanced ML model.
+            // We can check image dimensions, color palette, etc.
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = image.naturalWidth;
+            canvas.height = image.naturalHeight;
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+            
+            // Get pixel data from a small sample in the center
+            const pixelData = ctx.getImageData(canvas.width / 2, canvas.height / 2, 1, 1).data;
+            const r = pixelData[0];
+            const g = pixelData[1];
+            const b = pixelData[2];
+            
+            let skinTone = 'ปกติ';
+            if (r > 200 && g > 180 && b > 160) {
+                skinTone = 'ขาวอมชมพู';
+            } else if (r > 150 && g > 100 && b > 80) {
+                skinTone = 'ผิวคล้ำ';
+            } else if (r > 180 && g > 150 && b > 120) {
+                skinTone = 'ผิวเหลือง';
+            }
+            
+            return `ตรวจพบสีผิวโทน: ${skinTone}. โปรแกรมสามารถวิเคราะห์ได้เฉพาะสีผิวเท่านั้นในตอนนี้`;
+        }
+
+        function showSummaryAndSuggestions() {
+            document.getElementById('summary-name').textContent = userProfile.name;
+            const skinTypeMap = {
+                dry: 'ผิวแห้ง',
+                oily: 'ผิวมัน',
+                combination: 'ผิวผสม',
+                sensitive: 'ผิวแพ้ง่าย'
+            };
+            document.getElementById('summary-skin-type').textContent = skinTypeMap[userProfile.skinType];
+            document.getElementById('summary-concerns').textContent = userProfile.concerns || 'ไม่ได้ระบุ';
+
+            // Generate suggestions based on profile data
+            let suggestions = [];
+            switch(userProfile.skinType) {
+                case 'dry':
+                    suggestions.push('ใช้ผลิตภัณฑ์ที่มีส่วนผสมของเซราไมด์ (ceramide) หรือไฮยาลูรอนิกแอซิด (hyaluronic acid)');
+                    suggestions.push('หลีกเลี่ยงการอาบน้ำอุ่นจัดและใช้สบู่ที่รุนแรง');
+                    break;
+                case 'oily':
+                    suggestions.push('ใช้ผลิตภัณฑ์ที่ช่วยควบคุมความมันและไม่ก่อให้เกิดการอุดตัน');
+                    suggestions.push('ทำความสะอาดผิวอย่างสม่ำเสมอ แต่ไม่ควรล้างบ่อยเกินไป');
+                    break;
+                case 'combination':
+                    suggestions.push('ใช้ผลิตภัณฑ์ที่เน้นความสมดุลของผิวในแต่ละส่วน');
+                    suggestions.push('ใช้ผลิตภัณฑ์ที่ช่วยเติมความชุ่มชื้นในส่วนที่แห้งและควบคุมความมันในส่วนที่มัน');
+                    break;
+                case 'sensitive':
+                    suggestions.push('เลือกใช้ผลิตภัณฑ์ที่ปราศจากน้ำหอม แอลกอฮอล์ และสารระคายเคือง');
+                    suggestions.push('ทดสอบผลิตภัณฑ์ใหม่บนผิวส่วนเล็กๆ ก่อนใช้จริง');
+                    break;
+            }
+
+            // Add suggestions based on concerns
+            if (userProfile.concerns.includes('สิวที่หลัง')) {
+                suggestions.push('ใช้ผลิตภัณฑ์ที่มีส่วนผสมของ Salicylic Acid หรือ Glycolic Acid');
+                suggestions.push('ใส่เสื้อผ้าที่ระบายอากาศได้ดีและอาบน้ำทันทีหลังออกกำลังกาย');
+            }
+            if (userProfile.concerns.includes('รอยดำ')) {
+                suggestions.push('ใช้ผลิตภัณฑ์ที่มีส่วนผสมของ Vitamin C หรือ Niacinamide');
+                suggestions.push('ทาครีมกันแดดเป็นประจำเพื่อป้องกันรอยดำเข้มขึ้น');
+            }
+
+            suggestionList.innerHTML = suggestions.map(s => `<li>${s}</li>`).join('');
+        }
+    </script>
+</body>
+</html>
