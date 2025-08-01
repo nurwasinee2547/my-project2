@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": "../../images"
+		},
+		{
+			"path": "../../myprojeck"
+		},
+		{
+			"path": "../../pages"
+		},
+		{
+			"path": "../../scripts"
+		},
+		{
+			"path": "../../styles"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "pages"
+	}
+}

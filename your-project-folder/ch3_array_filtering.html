@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ฟิลเตอร์รายการ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        h1 {
+            color: #333;
+        }
+        #searchInput {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        li {
+            background-color: #fff;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>ค้นหารายชื่อ</h1>
+        
+        <input type="text" id="searchInput" placeholder="ค้นหาชื่อ...">
+        
+        <ul id="nameList">
+            <!-- รายการชื่อจะถูกเพิ่มที่นี่ -->
+        </ul>
+    </div>
+    
+  
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // อ้างอิงถึงองค์ประกอบในหน้าเว็บ
+            const searchInput = document.getElementById('searchInput');
+            const nameList = document.getElementById('nameList');
+
+            // Array ที่เก็บรายชื่อ
+            const names = ['เคน', 'บีบี', 'ตี', 'เจม', 'ฟิลม', 'มิว', 'โก้'];
+
+            // ฟังก์ชันสำหรับแสดงรายการชื่อ
+            const renderNames = (filteredNames) => {
+                nameList.innerHTML = ''; // ล้างรายการเดิม
+                filteredNames.forEach(name => {
+                    const li = document.createElement('li');
+                    li.textContent = name;
+                    nameList.appendChild(li);
+                });
+            };
+
+            // ฟังก์ชันสำหรับกรองรายชื่อตาม input
+            const filterNames = () => {
+                const searchTerm = searchInput.value.toLowerCase();
+                const filteredNames = names.filter(name => {
+                    return name.toLowerCase().includes(searchTerm);
+                });
+                renderNames(filteredNames);
+            };
+
+            // เพิ่ม event listener เมื่อค่าใน input เปลี่ยน
+            searchInput.addEventListener('input', filterNames);
+
+            // แสดงรายการชื่อทั้งหมดครั้งแรก
+            renderNames(names);
+        });
+    </script>
+</body>
+</html>

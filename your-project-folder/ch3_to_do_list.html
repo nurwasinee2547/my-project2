@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สิ่งที่ต้องทำ (To-Do List)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        h1 {
+            color: #333;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        #taskInput {
+            width: 70%;
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+        #addButton {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .remove-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>สิ่งที่ต้องทำ (To-Do List)</h1>
+        
+        <div class="input-group">
+            <input type="text" id="taskInput" placeholder="เพิ่มงานที่ต้องทำ">
+            <button id="addButton">เพิ่ม</button>
+        </div>
+        
+        <ul id="taskList">
+            <!-- รายการ To-Do จะถูกเพิ่มที่นี่ -->
+        </ul>
+    </div>
+    
+   
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // อ้างอิงถึงองค์ประกอบในหน้าเว็บ
+            const taskInput = document.getElementById('taskInput');
+            const addButton = document.getElementById('addButton');
+            const taskList = document.getElementById('taskList');
+
+            // Array สำหรับเก็บรายการ To-Do
+            let tasks = [];
+
+            // ฟังก์ชันสำหรับแสดงรายการ To-Do
+            const renderTasks = () => {
+                taskList.innerHTML = ''; // ล้างรายการเดิม
+                tasks.forEach((task, index) => {
+                    const li = document.createElement('li');
+                    li.textContent = task;
+                    
+                    // สร้างปุ่มลบ
+                    const removeButton = document.createElement('button');
+                    removeButton.textContent = 'ลบ';
+                    removeButton.className = 'remove-btn';
+                    removeButton.onclick = () => removeTask(index);
+                    
+                    li.appendChild(removeButton);
+                    taskList.appendChild(li);
+                });
+            };
+
+            // ฟังก์ชันสำหรับเพิ่มงานใหม่
+            const addTask = () => {
+                const taskText = taskInput.value.trim();
+                if (taskText !== '') {
+                    tasks.push(taskText);
+                    taskInput.value = ''; // ล้าง input field
+                    renderTasks(); // แสดงรายการ To-Do ใหม่
+                }
+            };
+            
+            // ฟังก์ชันสำหรับลบงาน
+            const removeTask = (index) => {
+                tasks.splice(index, 1);
+                renderTasks(); // แสดงรายการ To-Do ใหม่
+            };
+
+            // เพิ่ม event listener สำหรับปุ่ม "เพิ่ม"
+            addButton.addEventListener('click', addTask);
+            
+            // เพิ่ม event listener สำหรับการกด Enter ใน input field
+            taskInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    addTask();
+                }
+            });
+
+            // แสดงรายการ To-Do ครั้งแรก
+            renderTasks();
+        });
+    </script>
+</body>
+</html>

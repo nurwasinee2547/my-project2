@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบฝึกหัด: เมนูเลือกรายการ</title>
+    <!-- ลิงก์ Tailwind CSS CDN (ใช้สำหรับพื้นหลัง body เท่านั้น) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* กำหนดฟอนต์ Kanit ตามที่คุณต้องการ */
+        body {
+            font-family: 'Kanit', sans-serif;
+            /* สีพื้นหลังเทาเข้ม */
+            background-color: #1f2937;
+            /* สีข้อความเป็นสีขาว */
+            color: white;
+            /* จัดองค์ประกอบให้อยู่ตรงกลางหน้าจอ (แม้ว่า prompt/alert จะบล็อกหน้าจอ) */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* กำหนดความสูงเต็มหน้าจอ */
+            margin: 0; /* ลบ margin เริ่มต้นของ body */
+            overflow: hidden; /* ซ่อน scrollbar ถ้ามี */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ข้อความแจ้งเตือนผู้ใช้ (ถูกลบออกตามคำขอ) -->
+
+    <script>
+        // ฟังก์ชันที่จะทำงานทันทีเมื่อหน้าเว็บโหลดเสร็จ
+        document.addEventListener('DOMContentLoaded', function() {
+            let choice; // ตัวแปรสำหรับเก็บตัวเลือกจากผู้ใช้
+
+            // ใช้ do-while loop เพื่อแสดงเมนูและรับตัวเลือกไปเรื่อยๆ จนกว่าผู้ใช้จะเลือก '4'
+            do {
+                // แสดงเมนูและรับตัวเลือกจากผู้ใช้โดยใช้ prompt()
+                choice = prompt(
+                    "กรุณาเลือกเมนู:\n" +
+                    "1. แสดงชื่อ\n" +
+                    "2. แสดงอายุ\n" +
+                    "3. แสดงอาชีพ\n" +
+                    "4. ออกจากโปรแกรม"
+                );
+
+                // ตรวจสอบตัวเลือกที่ผู้ใช้กรอก
+                if (choice !== null) { // ตรวจสอบว่าผู้ใช้ไม่ได้กด Cancel
+                    switch (choice.trim()) {
+                        case '1':
+                            alert("คุณเลือก: แสดงชื่อ");
+                            break;
+                        case '2':
+                            alert("คุณเลือก: แสดงอายุ");
+                            break;
+                        case '3':
+                            alert("คุณเลือก: แสดงอาชีพ");
+                            break;
+                        case '4':
+                            alert("ออกจากโปรแกรม");
+                            break;
+                        default:
+                            alert("ตัวเลือกไม่ถูกต้อง กรุณาเลือกใหม่");
+                    }
+                } else {
+                    // ถ้าผู้ใช้กด Cancel ให้ถือว่าเป็นการออกจากโปรแกรม
+                    alert("คุณยกเลิกการเลือกเมนู");
+                    choice = '4'; // กำหนด choice เป็น '4' เพื่อออกจาก loop
+                }
+            } while (choice !== '4'); // เงื่อนไขการวนซ้ำ: วนต่อไปจนกว่าผู้ใช้จะเลือก '4'
+
+            // Optional: ปุ่มกลับหน้าบทเรียน (ถ้าต้องการเพิ่ม)
+            // สามารถเพิ่มปุ่มกลับหน้าบทเรียนที่นี่ได้
+            // เช่น:
+            // const backButton = document.createElement('a');
+            // backButton.href = 'lesson2_if_else.html';
+            // backButton.textContent = 'กลับหน้าบทเรียน';
+            // backButton.className = 'inline-block mt-6 bg-gray-600 text-white font-bold py-2 px-5 rounded-full shadow-md hover:bg-gray-700 transition duration-300 transform hover:scale-105';
+            // document.body.appendChild(backButton);
+        });
+    </script>
+
+</body>
+</html>

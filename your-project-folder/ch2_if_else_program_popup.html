@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บทที่ 2: การใช้ If-else (Prompt/Alert)</title>
+    <!-- ลิงก์ Tailwind CSS CDN (ใช้สำหรับพื้นหลัง body เท่านั้น) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* กำหนดฟอนต์ Kanit ตามที่คุณต้องการ */
+        body {
+            font-family: 'Kanit', sans-serif;
+            /* สีพื้นหลังเทาเข้ม */
+            background-color: #1f2937;
+            /* สีข้อความเป็นสีขาว */
+            color: white;
+            /* จัดองค์ประกอบให้อยู่ตรงกลางหน้าจอ (แม้ว่า prompt/alert จะบล็อกหน้าจอ) */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* กำหนดความสูงเต็มหน้าจอ */
+            margin: 0; /* ลบ margin เริ่มต้นของ body */
+            overflow: hidden; /* ซ่อน scrollbar ถ้ามี */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ข้อความแจ้งเตือนผู้ใช้ (ถูกลบออกตามคำขอ) -->
+
+    <script>
+        // ฟังก์ชันที่จะทำงานทันทีเมื่อหน้าเว็บโหลดเสร็จ
+        document.addEventListener('DOMContentLoaded', function() {
+            // รับคะแนนจากผู้ใช้โดยใช้ prompt()
+            let score = prompt("กรุณากรอกคะแนนของคุณ (0 - 100):");
+
+            // ตรวจสอบว่าผู้ใช้กด Cancel หรือไม่ (prompt จะคืนค่า null ถ้ากด Cancel)
+            if (score !== null) {
+                // แปลงค่าที่รับมาเป็นตัวเลขเต็ม (integer)
+                score = parseInt(score);
+
+                // ตรวจสอบเงื่อนไขคะแนน
+                if (isNaN(score)) {
+                    // ถ้าไม่ใช่ตัวเลข
+                    alert("กรุณากรอกตัวเลขเท่านั้น");
+                } else if (score < 0 || score > 100) {
+                    // ถ้าคะแนนอยู่นอกช่วง 0-100
+                    alert("กรุณากรอกคะแนนระหว่าง 0 ถึง 100");
+                } else if (score >= 80) {
+                    // ถ้าคะแนน 80 ขึ้นไป
+                    alert("ผลลัพธ์: ดีมาก");
+                } else if (score >= 50) {
+                    // ถ้าคะแนน 50-79
+                    alert("ผลลัพธ์: พอใช้");
+                } else {
+                    // ถ้าคะแนนต่ำกว่า 50
+                    alert("ผลลัพธ์: ควรปรับปรุง");
+                }
+            } else {
+                // ถ้าผู้ใช้ยกเลิกการกรอกคะแนน
+                alert("คุณยกเลิกการกรอกคะแนน");
+            }
+        });
+    </script>
+
+</body>
+</html>

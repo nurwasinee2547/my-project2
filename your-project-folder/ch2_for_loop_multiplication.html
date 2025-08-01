@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรแกรมแสดงสูตรคูณ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #1f2937; /* สีเทาเข้ม */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+        .container {
+            background-color: #374151; /* สีเทาเข้มขึ้นสำหรับ container */
+            padding: 2rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+            width: 100%;
+            max-width: 350px; /* จำกัดความกว้าง */
+            text-align: center;
+            /* ซ่อน container นี้ไว้ เพราะเราจะใช้ prompt/alert เป็นหลัก */
+            display: none;
+        }
+        .multiplication-table p {
+            font-size: 1.125rem; /* text-lg */
+            margin-bottom: 0.25rem; /* ระยะห่างระหว่างบรรทัด */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- กล่องหลักของโปรแกรม (ซ่อนไว้ เพราะเราจะใช้ prompt/alert) -->
+    <div class="container">
+        <h1 class="text-2xl font-bold mb-6">โปรแกรมแสดงสูตรคูณ</h1>
+        <div id="multiplicationTable" class="multiplication-table">
+            <!-- สูตรคูณจะถูกเพิ่มเข้ามาที่นี่โดย JavaScript -->
+        </div>
+    </div>
+
+    <!-- ปุ่มกลับหน้าบทเรียน (ซ่อนไว้ เพราะ prompt/alert จะบล็อกการโต้ตอบ) -->
+    <!-- หากต้องการให้ปุ่มกลับปรากฏหลังจากการโต้ตอบ prompt/alert สิ้นสุดลง คุณสามารถเพิ่มโค้ด JavaScript เพื่อแสดงปุ่มนี้ได้ -->
+    <!-- <a href="lesson2_if_else.html" class="inline-block mt-8 bg-gray-600 text-white font-bold py-2 px-5 rounded-full shadow-md hover:bg-gray-700 transition duration-300 transform hover:scale-105">
+        กลับหน้าบทเรียน
+    </a> -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ไม่จำเป็นต้องดึง multiplicationTableDiv ถ้าเราจะไม่แสดงผลใน HTML โดยตรง
+            // const multiplicationTableDiv = document.getElementById('multiplicationTable');
+            let inputNumber;
+
+            // ใช้ do-while loop เพื่อรับค่าจากผู้ใช้จนกว่าจะได้ตัวเลขที่ถูกต้อง
+            do {
+                const input = prompt("กรุณากรอกตัวเลขที่คุณต้องการดูสูตรคูณ:");
+
+                if (input === null) { // ผู้ใช้กด Cancel
+                    alert("คุณยกเลิกการกรอกตัวเลข");
+                    // สามารถเพิ่มการเปลี่ยนเส้นทางกลับหน้าเดิมได้ที่นี่
+                    window.location.href = 'lesson2_if_else.html'; // กลับหน้าบทเรียน
+                    return; // หยุดการทำงานของ script
+                }
+
+                inputNumber = parseInt(input);
+
+                if (isNaN(inputNumber)) {
+                    alert("กรุณากรอกตัวเลขเท่านั้น");
+                } else if (inputNumber < 1 || inputNumber > 12) { // ตัวอย่างการจำกัดช่วงตัวเลข
+                    alert("กรุณากรอกตัวเลขระหว่าง 1 ถึง 12");
+                }
+
+            } while (isNaN(inputNumber) || inputNumber < 1 || inputNumber > 12); // วนลูปจนกว่าจะได้ตัวเลขที่ถูกต้อง
+
+            // สร้างข้อความสูตรคูณทั้งหมด
+            let multiplicationResult = `สูตรคูณแม่ ${inputNumber}:\n\n`;
+            for (let i = 1; i <= 12; i++) {
+                multiplicationResult += `${inputNumber} x ${i} = ${inputNumber * i}\n`;
+            }
+
+            // แสดงผลลัพธ์ทั้งหมดใน alert เดียว
+            alert(multiplicationResult);
+
+            // เมื่อแสดงผลลัพธ์เสร็จแล้ว สามารถเปลี่ยนเส้นทางกลับหน้าบทเรียนได้
+            window.location.href = 'lesson2_if_else.html';
+        });
+    </script>
+
+</body>
+</html>

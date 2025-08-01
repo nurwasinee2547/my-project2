@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรแกรมตรวจสอบฟอร์ม</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+            min-height: 100vh;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 400px;
+        }
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+        .input-label {
+            display: block;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .input-field {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border: 1px solid #d1d5db;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+        .button {
+            @apply bg-blue-600 text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-blue-700 transition duration-300 transform hover:scale-105 inline-block;
+            width: 100%;
+        }
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none; /* ซ่อนข้อความเริ่มต้น */
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">ฟอร์มเข้าสู่ระบบ</h1>
+        
+        <form id="loginForm" onsubmit="return validateForm()">
+            <div class="input-group">
+                <label for="email" class="input-label">อีเมล:</label>
+                <input type="text" id="email" name="email" class="input-field" placeholder="กรอกอีเมล">
+                <span id="emailError" class="error-message">กรุณาใส่อีเมล</span>
+            </div>
+            
+            <div class="input-group">
+                <label for="password" class="input-label">รหัสผ่าน:</label>
+                <input type="password" id="password" name="password" class="input-field" placeholder="กรอกรหัสผ่าน">
+                <span id="passwordError" class="error-message">กรุณาใส่รหัสผ่าน</span>
+            </div>
+            
+            <button type="submit" class="button">เข้าสู่ระบบ</button>
+        </form>
+    </div>
+    <script>
+        function validateForm() {
+            // ดึงค่าจากฟอร์ม
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // ดึง element สำหรับแสดงข้อความ error
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+            
+            // ตั้งค่าเริ่มต้น
+            let isValid = true;
+            
+            // ตรวจสอบอีเมล
+            if (email === "") {
+                emailError.style.display = 'block';
+                isValid = false;
+            } else {
+                emailError.style.display = 'none';
+            }
+            
+            // ตรวจสอบรหัสผ่าน
+            if (password === "") {
+                passwordError.style.display = 'block';
+                isValid = false;
+            } else {
+                passwordError.style.display = 'none';
+            }
+            
+            // ถ้าฟอร์มไม่ถูกต้อง จะหยุดการส่งฟอร์ม
+            if (!isValid) {
+                return false;
+            }
+            
+            // ถ้าฟอร์มถูกต้อง
+            alert("เข้าสู่ระบบสำเร็จ!"); // ใช้ alert เพื่อแสดงข้อความแจ้งเตือน
+            return true;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรแกรมรับค่าจนกว่าจะจบ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #1f2937; /* สีเทาเข้ม */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+        .container {
+            background-color: #374151; /* สีเทาเข้มขึ้นสำหรับ container */
+            padding: 2rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+            width: 100%;
+            max-width: 350px; /* จำกัดความกว้าง */
+            text-align: center;
+            /* ซ่อน container นี้ไว้ เพราะเราจะใช้ prompt/alert เป็นหลัก */
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- กล่องหลักของโปรแกรม (ซ่อนไว้ เพราะเราจะใช้ prompt/alert) -->
+    <div class="container">
+        <h1 class="text-2xl font-bold mb-6">โปรแกรมรับค่าจนกว่าจะจบ</h1>
+        <div id="outputArea">
+            <!-- ข้อความจะถูกเพิ่มเข้ามาที่นี่โดย JavaScript -->
+        </div>
+    </div>
+
+    <!-- ปุ่มกลับหน้าบทเรียน (ซ่อนไว้ เพราะ prompt/alert จะบล็อกการโต้ตอบ) -->
+    <!-- <a href="lesson2_if_else.html" class="inline-block mt-8 bg-gray-600 text-white font-bold py-2 px-5 rounded-full shadow-md hover:bg-gray-700 transition duration-300 transform hover:scale-105">
+        กลับหน้าบทเรียน
+    </a> -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let userInput;
+            const collectedInputs = [];
+
+            // ใช้ while loop เพื่อรับค่าจากผู้ใช้ไปเรื่อยๆ
+            // จนกว่าผู้ใช้จะกด Cancel หรือพิมพ์คำว่า "จบ"
+            while (true) {
+                userInput = prompt("พิมพ์ข้อความ (พิมพ์ 'จบ' เพื่อออก):");
+
+                if (userInput === null) {
+                    // ผู้ใช้กด Cancel
+                    alert("คุณยกเลิกการกรอกข้อความ โปรแกรมจะหยุดทำงาน");
+                    break; // ออกจาก loop
+                }
+
+                // trim() ใช้เพื่อลบช่องว่างหน้าและหลังข้อความ
+                if (userInput.trim().toLowerCase() === 'จบ') {
+                    // ผู้ใช้พิมพ์คำว่า "จบ" (ไม่สนใจตัวพิมพ์เล็ก/ใหญ่)
+                    alert("คุณพิมพ์ 'จบ' โปรแกรมจะหยุดทำงาน");
+                    break; // ออกจาก loop
+                }
+
+                if (userInput.trim() !== '') {
+                    collectedInputs.push(userInput);
+                    alert("คุณพิมพ์: " + userInput);
+                } else {
+                    alert("กรุณาอย่าเว้นว่าง");
+                }
+            }
+            
+            // เมื่อออกจาก loop แล้ว สามารถแสดงผลลัพธ์ที่เก็บไว้ทั้งหมดได้
+            if (collectedInputs.length > 0) {
+                alert("ข้อความที่คุณกรอกทั้งหมดคือ:\n" + collectedInputs.join('\n'));
+            } else {
+                alert("ไม่มีข้อความใดๆ ถูกกรอก");
+            }
+            
+            // เมื่อแสดงผลลัพธ์เสร็จแล้ว สามารถเปลี่ยนเส้นทางกลับหน้าบทเรียนได้
+            window.location.href = 'lesson2_if_else.html';
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บทที่ 2: การใช้ do loop</title>
+    <!-- ลิงก์ Tailwind CSS CDN (ใช้สำหรับพื้นหลัง body เท่านั้น) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* กำหนดฟอนต์ Kanit ตามที่คุณต้องการ */
+        body {
+            font-family: 'Kanit', sans-serif;
+            /* สีพื้นหลังเทาเข้ม */
+            background-color: #1f2937;
+            /* สีข้อความเป็นสีขาว */
+            color: white;
+            /* จัดองค์ประกอบให้อยู่ตรงกลางหน้าจอ (แม้ว่า prompt/alert จะบล็อกหน้าจอ) */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* กำหนดความสูงเต็มหน้าจอ */
+            margin: 0; /* ลบ margin เริ่มต้นของ body */
+            overflow: hidden; /* ซ่อน scrollbar ถ้ามี */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ข้อความแจ้งเตือนผู้ใช้ (ถูกลบออกตามคำขอ) -->
+
+    <script>
+        // ฟังก์ชันที่จะทำงานทันทีเมื่อหน้าเว็บโหลดเสร็จ
+        document.addEventListener('DOMContentLoaded', function() {
+            let score; // ตัวแปรสำหรับเก็บคะแนน
+            let totalScores = 0; // ตัวแปรสำหรับเก็บผลรวมคะแนน
+            let scoreCount = 0; // ตัวแปรสำหรับนับจำนวนคะแนนที่กรอก
+
+            // ใช้ do-while loop เพื่อรับคะแนนไปเรื่อยๆ จนกว่าผู้ใช้จะกรอกค่าว่าง
+            do {
+                // รับคะแนนจากผู้ใช้โดยใช้ prompt()
+                // ข้อความใน prompt: "กรุณากรอกคะแนนนักเรียน (กด OK โดยไม่กรอกอะไรเพื่อหยุด):"
+                score = prompt("กรุณากรอกคะแนนนักเรียน (กด OK โดยไม่กรอกอะไรเพื่อหยุด):");
+
+                // ตรวจสอบว่าผู้ใช้ไม่ได้กด Cancel และไม่ได้กรอกค่าว่าง
+                if (score !== null && score.trim() !== '') {
+                    const parsedScore = parseInt(score); // แปลงค่าที่รับมาเป็นตัวเลขเต็ม
+
+                    if (isNaN(parsedScore)) {
+                        // ถ้าไม่ใช่ตัวเลข
+                        alert("กรุณากรอกตัวเลขเท่านั้น");
+                    } else if (parsedScore < 0 || parsedScore > 100) {
+                        // ถ้าคะแนนอยู่นอกช่วง 0-100
+                        alert("กรุณากรอกคะแนนระหว่าง 0 ถึง 100");
+                    } else {
+                        // ถ้าเป็นตัวเลขที่ถูกต้องและอยู่ในช่วง
+                        totalScores += parsedScore; // เพิ่มคะแนนเข้ารวม
+                        scoreCount++; // นับจำนวนคะแนน
+                    }
+                }
+            } while (score !== null && score.trim() !== ''); // เงื่อนไขการวนซ้ำ: วนต่อไปถ้าไม่ได้กด Cancel และไม่ได้กรอกค่าว่าง
+
+            // แสดงผลลัพธ์หลังจาก loop หยุดทำงาน
+            if (scoreCount > 0) {
+                const averageScore = totalScores / scoreCount; // คำนวณคะแนนเฉลี่ย
+                alert(`คุณได้กรอกคะแนนทั้งหมด ${scoreCount} ค่า\nผลรวมคะแนน: ${totalScores}\nคะแนนเฉลี่ย: ${averageScore.toFixed(2)}`);
+            } else {
+                alert("ไม่มีคะแนนถูกกรอก");
+            }
+
+            // Optional: ปุ่มกลับหน้าบทเรียน (ถ้าต้องการเพิ่ม)
+            // สามารถเพิ่มปุ่มกลับหน้าบทเรียนที่นี่ได้
+            // เช่น:
+            // const backButton = document.createElement('a');
+            // backButton.href = 'lesson2_if_else.html';
+            // backButton.textContent = 'กลับหน้าบทเรียน';
+            // backButton.className = 'inline-block mt-6 bg-gray-600 text-white font-bold py-2 px-5 rounded-full shadow-md hover:bg-gray-700 transition duration-300 transform hover:scale-105';
+            // document.body.appendChild(backButton);
+        });
+    </script>
+
+</body>
+</html>

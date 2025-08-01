@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบสั่งซื้อสินค้า</title>
+</head>
+<body>
+    
+    <h1>ระบบสั่งซื้อสินค้า</h1>
+    <br>
+    
+    <div>
+        <h2>สินค้า: <span id="productName">สินค้า A</span></h2>
+        <p>ราคาต่อชิ้น: <span id="productPrice">120</span> บาท</p>
+    </div>
+    
+    <div>
+        <label for="quantity">จำนวน:</label>
+        <input type="number" id="quantity" value="1" min="1">
+    </div>
+    <br>
+    
+    <div>
+        <h3>ราคารวม: <span id="totalPrice">120</span> บาท</h3>
+    </div>
+    
+    <button id="confirmButton">ยืนยันการสั่งซื้อ</button>
+    
+    <hr>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ดึง element ที่ต้องการใช้งาน
+            const quantityInput = document.getElementById('quantity');
+            const totalPriceSpan = document.getElementById('totalPrice');
+            const confirmButton = document.getElementById('confirmButton');
+
+            // กำหนดราคาสินค้าเริ่มต้น
+            const productPrice = 120; // ราคาสินค้าต่อชิ้น
+            
+            // ฟังก์ชันสำหรับคำนวณราคารวม
+            const calculateTotalPrice = () => {
+                const quantity = parseInt(quantityInput.value, 10);
+                const totalPrice = quantity * productPrice;
+                totalPriceSpan.textContent = totalPrice;
+            };
+
+            // เพิ่ม event listener เมื่อค่าใน input เปลี่ยน
+            quantityInput.addEventListener('input', calculateTotalPrice);
+
+            // เพิ่ม event listener เมื่อคลิกปุ่มยืนยัน
+            confirmButton.addEventListener('click', () => {
+                const quantity = parseInt(quantityInput.value, 10);
+                const totalPrice = parseInt(totalPriceSpan.textContent, 10);
+                // ใช้ alert() เพื่อแสดงข้อความแจ้งเตือนตามคำขอ
+                alert(`ยืนยันการสั่งซื้อ: สินค้า A จำนวน ${quantity} ชิ้น ราคารวม ${totalPrice} บาท`);
+            });
+        });
+    </script>
+</body>
+</html>

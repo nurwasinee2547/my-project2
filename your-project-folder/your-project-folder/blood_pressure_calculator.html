@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>โปรแกรมดูแลความสวยงามของผิวกาย</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Kanit', sans-serif;
+      background-color: #f3f4f6;
+    }
+  </style>
+</head>
+<body class="p-6">
+  <div class="max-w-xl mx-auto bg-white rounded-xl shadow-md p-6">
+    <h1 class="text-2xl font-bold text-pink-600 mb-4">✨ โปรแกรมดูแลผิวกาย ✨</h1>
+
+    <label for="skinType" class="block mb-2 text-lg">เลือกประเภทผิวของคุณ:</label>
+    <select id="skinType" class="w-full p-2 border border-gray-300 rounded mb-4">
+      <option value="">-- กรุณาเลือก --</option>
+      <option value="dry">ผิวแห้ง</option>
+      <option value="oily">ผิวมัน</option>
+      <option value="combination">ผิวผสม</option>
+      <option value="sensitive">ผิวแพ้ง่าย</option>
+      <option value="normal">ผิวธรรมดา</option>
+    </select>
+
+    <button onclick="showCareAdvice()" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">ดูคำแนะนำ</button>
+
+    <div id="advice" class="mt-6 text-gray-700 text-lg"></div>
+  </div>
+
+  <script>
+    function showCareAdvice() {
+      const skinType = document.getElementById("skinType").value;
+      const adviceBox = document.getElementById("advice");
+
+      let advice = "";
+      switch (skinType) {
+        case "dry":
+          advice = "ผิวแห้ง: ใช้ครีมบำรุงที่มีความชุ่มชื้นสูง ดื่มน้ำให้เพียงพอ และหลีกเลี่ยงสบู่ที่ทำให้ผิวแห้ง.";
+          break;
+        case "oily":
+          advice = "ผิวมัน: ใช้เจลล้างหน้าที่ช่วยควบคุมความมัน หลีกเลี่ยงการสัมผัสหน้าบ่อย ๆ.";
+          break;
+        case "combination":
+          advice = "ผิวผสม: ดูแลตามสภาพผิวในแต่ละจุด เช่น บำรุงบริเวณที่แห้งและควบคุมมันบริเวณ T-Zone.";
+          break;
+        case "sensitive":
+          advice = "ผิวแพ้ง่าย: ใช้ผลิตภัณฑ์ที่ไม่มีน้ำหอมและสารระคายเคือง ทดสอบก่อนใช้ทุกครั้ง.";
+          break;
+        case "normal":
+          advice = "ผิวธรรมดา: ดูแลผิวตามปกติ รักษาความสะอาดและความชุ่มชื้นอย่างสม่ำเสมอ.";
+          break;
+        default:
+          advice = "กรุณาเลือกประเภทผิวของคุณก่อน";
+      }
+
+      adviceBox.innerText = advice;
+    }
+  </script>
+</body>
+</html>

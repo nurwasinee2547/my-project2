@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรแกรม Inline</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f3f4f6; /* สีเทาอ่อน */
+            color: #1f2937; /* สีเทาเข้ม */
+            min-height: 100vh;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 600px;
+        }
+        .section {
+            border-bottom: 1px solid #e5e7eb; /* สีเส้นแบ่ง */
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .text-link {
+            cursor: pointer;
+            color: #3b82f6; /* สีฟ้า */
+            font-weight: 600;
+            text-decoration: underline;
+        }
+        .text-link:hover {
+            color: #1d4ed8; /* สีน้ำเงินเข้ม */
+        }
+        .icon-text {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        #colorText {
+            transition: color 0.3s ease;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <!-- 1. เปลี่ยนข้อความเมื่อคลิก -->
+        <div class="section">
+            <h2 class="text-2xl font-bold mb-4">1. เปลี่ยนข้อความเมื่อคลิก</h2>
+            <div class="text-lg">
+                <span id="clickText" class="text-link" onclick="this.textContent = 'คุณคลิกที่ข้อความแล้ว'">
+                    👍 คลิกที่ข้อความนี้
+                </span>
+            </div>
+        </div>
+
+        <!-- 2. เปลี่ยนสีข้อความเมื่อชี้เมาส์ -->
+        <div class="section">
+            <h2 class="text-2xl font-bold mb-4">2. เปลี่ยนสีข้อความเมื่อชี้เมาส์</h2>
+            <div class="text-lg icon-text">
+                <span id="colorText"
+                    onmouseover="this.style.color = '#ef4444';" 
+                    onmouseout="this.style.color = '#3b82f6';"
+                    class="text-link">
+                    🔍 ชี้เมาส์ที่ข้อความนี้
+                </span>
+            </div>
+        </div>
+
+        <!-- 3. รับค่าจากผู้ใช้แล้วแสดงผล -->
+        <div class="section">
+            <h2 class="text-2xl font-bold mb-4">3. รับค่าจากผู้ใช้แล้วแสดงผล</h2>
+            <div class="input-group">
+                <input type="text" id="userInput" placeholder="พิมพ์ข้อความของคุณ" class="p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-full">
+            </div>
+            <div id="outputMessage" class="mt-4 text-gray-700 text-lg"></div>
+        </div>
+    </div>
+    
+   
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userInput = document.getElementById('userInput');
+            const outputMessage = document.getElementById('outputMessage');
+
+            userInput.addEventListener('keyup', function(event) {
+                outputMessage.textContent = event.target.value;
+            });
+        });
+    </script>
+</body>
+</html>

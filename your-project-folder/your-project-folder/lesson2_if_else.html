@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บทที่ 2: การใช้ If-else</title>
+    <!-- ลิงก์ Tailwind CSS CDN เพื่อการจัดสไตล์ที่รวดเร็วและตอบสนอง -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* กำหนดฟอนต์ Inter สำหรับทั้งหน้าเว็บ */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center py-8 px-4">
+
+    <!-- ส่วนหัวของหน้า (Header) -->
+    <header class="text-center mb-10">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 flex items-center justify-center space-x-4">
+            <span role="img" aria-label="book" class="text-blue-600 text-5xl">📖</span>
+            <span>รายการบทเรียน</span>
+        </h1>
+    </header>
+
+    <!-- ปุ่มกลับหน้าหลัก -->
+    <div class="w-full max-w-4xl mb-6 flex justify-start">
+        <!-- ลิงก์กลับไปหน้าหลัก (index.html) ซึ่งอยู่ที่โฟลเดอร์หลัก -->
+        <a href="index.html" class="bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-md shadow-md hover:bg-gray-400 transition duration-300 transform hover:scale-105">
+            กลับหน้าหลัก
+        </a>
+    </div>
+
+    <!-- ส่วนเนื้อหาหลัก (Main Content) - แสดงการ์ดบทเรียนย่อย -->
+    <main class="w-full max-w-4xl">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+
+            <!-- การ์ดบทเรียนย่อยที่ 1: บทที่ 2: การใช้ if else -->
+            <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm flex flex-col items-center text-center">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">บทที่ 2: การใช้ if else</h3>
+                <p class="text-gray-600 mb-6">รับค่าตอบจากผู้ใช้</p>
+                <a href="../ch2_if_else_program_popup.html" target="_blank" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-blue-700 transition duration-300 transform hover:scale-105 inline-block">
+                    ดูโปรแกรม
+                </a>
+            </div>
+
+            <!-- การ์ดบทเรียนย่อยที่ 2: บทที่ 2: การใช้ do loop -->
+            <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm flex flex-col items-center text-center">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">บทที่ 2: การใช้ do loop</h3>
+                <p class="text-gray-600 mb-6">รับคะแนนนักเรียนและแสดงผลเมื่อได้ค่าว่าง</p>
+                <a href="../ch2_do_loop_program.html" target="_blank" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-blue-700 transition duration-300 transform hover:scale-105 inline-block">
+                    ดูโปรแกรม
+                </a>
+            </div>
+
+            <!-- การ์ดบทเรียนย่อยที่ 3: บทที่ 2: การใช้ do loop -->
+            <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm flex flex-col items-center text-center">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">บทที่ 2: การใช้ do loop</h3>
+                <p class="text-gray-600 mb-6">แม่มดคิดเลข: เมนูธุรกิจการค้า</p>
+                <a href="../ch2_do_loop_menu_program.html" target="_blank"  class="bg-blue-600 text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-blue-700 transition duration-300 transform hover:scale-105 inline-block">
+                    ดูโปรแกรม
+                </a>
+            </div>
+
+            <!-- การ์ดบทเรียนย่อยที่ 4: บทที่ 2: การใช้ for loop -->
+            <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm flex flex-col items-center text-center">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">บทที่ 2: การใช้ for loop</h3>
+                <p class="text-gray-600 mb-6">แสดงเลขคู่จาก 2 ถึง 20</p>
+                <a href="../ch2_for_loop_even_numbers.html" target="_blank" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-blue-700 transition duration-300 transform hover:scale-105 inline-block">
+                    ดูโปรแกรม
+                </a>
+            </div>
+
+            <!-- การ์ดบทเรียนย่อยที่ 5: บทที่ 2: การใช้ for loop -->
+            <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm flex flex-col items-center text-center">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">บทที่ 2: การใช้ for loop</h3>
+                <p class="text-gray-600 mb-6">รับค่าจาก prompt() แล้วแสดงผลรวมของตัวเลขเป็น</p>
+                <a href="../ch2_for_loop_multiplication.html" target="_blank" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-blue-700 transition duration-300 transform hover:scale-105 inline-block">
+                    ดูโปรแกรม
+                </a>
+            </div>
+
+            <!-- การ์ดบทเรียนย่อยที่ 6: บทที่ 2: การใช้ while loop -->
+            <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm flex flex-col items-center text-center">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">บทที่ 2: การใช้ while loop</h3>
+                <p class="text-gray-600 mb-6">การวนซ้ำ while</p>
+                <a href="../ch2_while_loop_text.html" target="_blank" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-blue-700 transition duration-300 transform hover:scale-105 inline-block">
+                    ดูโปรแกรม
+                </a>
+            </div>
+
+            <!-- การ์ดบทเรียนย่อยที่ 7: บทที่ 2: การใช้ while loop -->
+            <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm flex flex-col items-center text-center">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">บทที่ 2: การใช้ while loop</h3>
+                <p class="text-gray-600 mb-6">รับค่าจากผู้ใช้จนกว่าจะพบคำว่า "จบ"</p>
+                <a href="../ch2_while_loop_end_program.html" target="_blank" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-blue-700 transition duration-300 transform hover:scale-105 inline-block">
+                    ดูโปรแกรม
+                </a>
+            </div>
+
+            <!-- การ์ดบทเรียนย่อยที่ 8: บทที่ 2: การใช้ inner -->
+            <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm flex flex-col items-center text-center">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">บทที่ 2: การใช้ inner</h3>
+                <p class="text-gray-600 mb-6">ตรวจสอบอายุบรรลุนิติภาวะ</p>
+                <a href="../your-project-folder/ch2_age_check_program.html" target="_blank" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-blue-700 transition duration-300 transform hover:scale-105 inline-block">
+                    ดูโปรแกรม
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

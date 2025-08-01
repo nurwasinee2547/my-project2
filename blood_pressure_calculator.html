@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เครื่องคำนวณความดันโลหิต</title>
+    <!-- ลิงก์ Tailwind CSS CDN เพื่อการจัดสไตล์ที่รวดเร็วและตอบสนอง -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* กำหนดฟอนต์ Inter สำหรับทั้งหน้าเว็บ */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center py-8 px-4">
+
+    <!-- ปุ่มกลับหน้าหลัก (คุณสามารถเปิดใช้งานได้หากต้องการให้หน้านี้มีปุ่มกลับ) -->
+    <!-- <div class="w-full max-w-sm mb-6 flex justify-start">
+        <a href="../index.html" class="bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-md shadow-md hover:bg-gray-400 transition duration-300 transform hover:scale-105">
+            กลับหน้าหลัก
+        </a>
+    </div> -->
+
+    <!-- กล่องหลักของเครื่องคำนวณ -->
+    <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-sm text-center">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6">เครื่องคำนวณความดันโลหิต</h1>
+
+        <div class="space-y-4 mb-6">
+            <!-- ช่องกรอกความดันตัวบน (Systolic) -->
+            <div>
+                <label for="systolic" class="block text-gray-700 text-base font-semibold mb-2">ความดันตัวบน (Systolic) มม.ปรอท:</label>
+                <input type="number" id="systolic" placeholder="ตัวอย่าง: 120"
+                       class="shadow-sm appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <!-- ช่องกรอกความดันตัวล่าง (Diastolic) -->
+            <div>
+                <label for="diastolic" class="block text-gray-700 text-base font-semibold mb-2">ความดันตัวล่าง (Diastolic) มม.ปรอท:</label>
+                <input type="number" id="diastolic" placeholder="ตัวอย่าง: 80"
+                       class="shadow-sm appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+        </div>
+
+        <!-- ปุ่มคำนวณผลลัพธ์ -->
+        <button class="bg-blue-600 text-white font-bold py-3 px-6 rounded-full shadow-md hover:bg-blue-700 transition duration-300 transform hover:scale-105 w-full mb-3">
+            คำนวณผลลัพธ์ความดันโลหิต
+        </button>
+
+        <!-- ปุ่มแสดง/ซ่อนตาราง -->
+        <button class="bg-pink-500 text-white font-bold py-3 px-6 rounded-full shadow-md hover:bg-pink-600 transition duration-300 transform hover:scale-105 w-full">
+            แสดง/ซ่อนตารางแสดงค่าความดันโลหิต
+        </button>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายการบทเรียน</title>
+    <!-- ลิงก์ Tailwind CSS CDN เพื่อการจัดสไตล์ที่รวดเร็วและตอบสนอง -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- ลิงก์ Font Awesome สำหรับไอคอน (ถ้าต้องการใช้ไอคอนอื่นนอกเหนือจากอิโมจิ) -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+    <style>
+        /* กำหนดฟอนต์ Inter สำหรับทั้งหน้าเว็บ */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center py-8 px-4">
+
+    <!-- ส่วนหัวของหน้า (Header) -->
+    <!-- จัดวางหัวข้อและไอคอนตรงกลาง -->
+    <header class="text-center mb-10">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 flex items-center justify-center space-x-4">
+            <!-- ไอคอนหนังสือ หรือคุณสามารถเปลี่ยนเป็นไอคอนอื่นได้ -->
+            <span role="img" aria-label="book" class="text-blue-600 text-5xl">📖</span>
+            <!-- หรือใช้ Font Awesome: <i class="fas fa-book text-blue-600 text-5xl"></i> -->
+            <span>รายการบทเรียน</span>
+        </h1>
+    </header>
+
+    <!-- ส่วนเนื้อหาหลัก (Main Content) - แสดงการ์ดบทเรียน -->
+    <!-- ใช้ Grid Layout เพื่อจัดเรียงการ์ดให้ตอบสนอง -->
+    <main class="w-full max-w-4xl">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center">
+
+            <!-- การ์ดบทเรียนที่ 1: บทที่ 2: คำสั่ง If-else -->
+            <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm flex flex-col items-center text-center">
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">บทที่ 2: คำสั่ง If-else</h3>
+                <p class="text-gray-600 mb-6">ตัวอย่างการใช้ If-else ในการตัดสินใจ</p>
+                <!-- เปลี่ยนจาก <button> เป็น <a> และเพิ่ม href ไปยังหน้า lesson2_if_else.html -->
+                <a href="lesson2_if_else.html" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-blue-700 transition duration-300 transform hover:scale-105 inline-block">
+                    ดูโปรแกรม
+                </a>
+            </div>
+
+            <!-- การ์ดบทเรียนที่ 2: บทที่ 3: DOM and Event -->
+            <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm flex flex-col items-center text-center">
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">บทที่ 3: DOM and Event</h3>
+                <p class="text-gray-600 mb-6">ตัวอย่างการใช้ If-else ในการตัดสินใจ</p>
+                 <a href="lesson3_list.html" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-blue-700 transition duration-300 transform hover:scale-105 inline-block">
+                    ดูโปรแกรม
+                </a>
+            </div>
+
+            <!-- การ์ดบทเรียนที่ 3: โปรแกรมที่ออกแบบ -->
+            <!-- การ์ดนี้จะอยู่ตรงกลางด้านล่างเมื่อเป็นจอใหญ่ -->
+            <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm flex flex-col items-center text-center md:col-span-2 md:w-1/2 md:mx-auto">
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">โปรแกรมที่ออกแบบ</h3>
+                <p class="text-gray-600 mb-6">โปรแกรมการคำนวณความต้านทานตัวต้านทาน</p>
+                <a href="blood_pressure_calculator.html" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-blue-700 transition duration-300 transform hover:scale-105 inline-block">
+                    ดูโปรแกรม
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../บีบีโปเจค/your-project-folder"
+		},
+		{
+			"path": "../บีบีโปเจค/myprojeck"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "your-project-folder"
+	}
+}

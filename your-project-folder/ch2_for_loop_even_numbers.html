@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แสดงเลขคู่จาก 2 ถึง 20</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #1f2937; /* สีเทาเข้ม */
+            color: white;
+            display: flex;
+            flex-direction: column; /* จัดเรียงในแนวตั้ง */
+            justify-content: flex-start; /* เริ่มจากด้านบน */
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem; /* เพิ่ม padding รอบๆ */
+        }
+        .container {
+            background-color: #374151; /* สีเทาเข้มขึ้นสำหรับ container */
+            padding: 2rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+            width: 100%;
+            max-width: 300px; /* จำกัดความกว้าง */
+            text-align: center;
+        }
+        .number-list p {
+            font-size: 1.25rem; /* text-xl */
+            margin-bottom: 0.5rem; /* ระยะห่างระหว่างตัวเลข */
+            line-height: 1.5; /* เพื่อให้มีช่องว่างระหว่างบรรทัด */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="text-2xl font-bold mb-6">แสดงเลขคู่จาก 2 ถึง 20</h1>
+        <div id="evenNumbersList" class="number-list">
+            <!-- เลขคู่จะถูกเพิ่มเข้ามาที่นี่โดย JavaScript -->
+        </div>
+    </div>
+
+    <!-- ปุ่มกลับหน้าบทเรียน -->
+    <a href="lesson2_if_else.html" class="inline-block mt-8 bg-gray-600 text-white font-bold py-2 px-5 rounded-full shadow-md hover:bg-gray-700 transition duration-300 transform hover:scale-105">
+        กลับหน้าบทเรียน
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const evenNumbersList = document.getElementById('evenNumbersList');
+
+            // ใช้ for loop เพื่อวนลูปจาก 2 ถึง 20
+            for (let i = 2; i <= 20; i += 2) {
+                // สร้าง element <p> สำหรับแต่ละเลขคู่
+                const p = document.createElement('p');
+                p.textContent = i; // กำหนดข้อความเป็นเลขคู่
+                evenNumbersList.appendChild(p); // เพิ่ม <p> เข้าไปใน div
+            }
+        });
+    </script>
+
+</body>
+</html>

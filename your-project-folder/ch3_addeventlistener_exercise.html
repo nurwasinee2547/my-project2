@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบฝึกหัด addEventListener()</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+            min-height: 100vh;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 2rem;
+        }
+        .section {
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .button {
+            @apply bg-blue-600 text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-blue-700 transition duration-300 transform hover:scale-105 inline-block;
+        }
+        .toggle-text {
+            display: inline-block;
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        .status-on {
+            color: #10b981; /* สีเขียว */
+        }
+        .status-off {
+            color: #ef4444; /* สีแดง */
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">แบบฝึกหัด addEventListener()</h1>
+        
+        <!-- แบบฝึกหัดที่ 1: สร้างปุ่ม 3 ปุ่มให้แสดงค่าต่างกัน -->
+        <div class="section">
+            <h2 class="text-2xl font-bold mb-4">แบบฝึกหัดที่ 1: สร้างปุ่ม 3 ปุ่มให้แสดงค่าต่างกัน</h2>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button id="btn1" class="button">ค่าตามข้อที่ 1</button>
+                <button id="btn2" class="button">ค่าตามข้อที่ 2</button>
+                <button id="btn3" class="button">ค่าตามข้อที่ 3</button>
+            </div>
+            <div id="exercise1Result" class="mt-4 text-xl font-semibold"></div>
+        </div>
+        
+        <!-- แบบฝึกหัดที่ 2: นับจำนวนการคลิกปุ่ม -->
+        <div class="section">
+            <h2 class="text-2xl font-bold mb-4">แบบฝึกหัดที่ 2: นับจำนวนการคลิกปุ่ม</h2>
+            <button id="clickCounterBtn" class="button">คลิกเพื่อรับ</button>
+            <div id="counterDisplay" class="mt-4 text-xl font-semibold">
+                จำนวนการคลิก: <span id="clickCount">0</span>
+            </div>
+        </div>
+
+        <!-- แบบฝึกหัดที่ 3: สลับข้อความระหว่าง "เปิด" กับ "ปิด" -->
+        <div class="section">
+            <h2 class="text-2xl font-bold mb-4">แบบฝึกหัดที่ 3: สลับข้อความระหว่าง "เปิด" กับ "ปิด"</h2>
+            <button id="toggleButton" class="button">สลับเปลี่ยน</button>
+            <div class="toggle-text status-on" id="toggleText">เปิด</div>
+        </div>
+    </div>
+   
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // แบบฝึกหัดที่ 1
+            const btn1 = document.getElementById('btn1');
+            const btn2 = document.getElementById('btn2');
+            const btn3 = document.getElementById('btn3');
+            const resultDiv1 = document.getElementById('exercise1Result');
+
+            btn1.addEventListener('click', () => {
+                resultDiv1.textContent = 'คุณคลิกที่ปุ่มที่ 1';
+            });
+            btn2.addEventListener('click', () => {
+                resultDiv1.textContent = 'คุณคลิกที่ปุ่มที่ 2';
+            });
+            btn3.addEventListener('click', () => {
+                resultDiv1.textContent = 'คุณคลิกที่ปุ่มที่ 3';
+            });
+
+            // แบบฝึกหัดที่ 2
+            const clickCounterBtn = document.getElementById('clickCounterBtn');
+            const clickCountSpan = document.getElementById('clickCount');
+            let count = 0;
+            
+            clickCounterBtn.addEventListener('click', () => {
+                count++;
+                clickCountSpan.textContent = count;
+            });
+
+            // แบบฝึกหัดที่ 3
+            const toggleButton = document.getElementById('toggleButton');
+            const toggleText = document.getElementById('toggleText');
+            let isOpened = true;
+
+            toggleButton.addEventListener('click', () => {
+                isOpened = !isOpened;
+                if (isOpened) {
+                    toggleText.textContent = 'เปิด';
+                    toggleText.classList.remove('status-off');
+                    toggleText.classList.add('status-on');
+                } else {
+                    toggleText.textContent = 'ปิด';
+                    toggleText.classList.remove('status-on');
+                    toggleText.classList.add('status-off');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
